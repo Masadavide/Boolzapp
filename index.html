@@ -9,8 +9,57 @@
     <title>Boolzapp</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="container2" id="app">
+            <header>
+                <div class="menu-left">
 
+                </div>
+                <div class="menu-right">
+
+                </div>
+            </header>
+            <main>
+                <div class="chat-left">
+                    <div class="notifiche">
+                        <i class="fas fa-bell-slash"></i>
+                        <div class="notifiche-text">
+                            <h3>Ricevi notifiche di nuovi messaggi</h3>
+                            <h4>Attiva notifiche desktop</h4>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="cerca" v-model="nomi" @keyup="cerca()">
+                    </div>
+                    <div class="contatti">
+                        <div class="contatto" v-for="(persona, indice) in contacts" @click="selezionaChat(indice)">
+                            <div class="profile-pic">
+                                <img :src="persona.avatar" alt="">
+                            </div>
+                            <div class="nome">
+                                {{persona.name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-right">
+                    <div class="chat">
+                        <div :class="messaggio.status" v-for="(messaggio, indice) in contacts[corrente].messages">
+                            {{messaggio.text}}
+                        </div>
+                        
+                        
+
+
+                    </div>
+                <div class="input-scrivi">
+                    <input type="text" id="scrivi" v-model="messaggio" @keyup.enter="scrivi()">
+                </div>
+            </main>
+        </div>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="myscript.js"></script>
 </body>
 </html>
