@@ -2,14 +2,15 @@ var app = new Vue({
     el:'#app',
     data: {
     
-        corrente:0,
+        corrente: null,
         messaggio:"",
         nomi:"",
+        tendinaCorrente: null,
 
         contacts: [
             {
             name: 'Michele',
-            avatar: 'img/img_1.jpg',
+            avatar: '_1',
             visible: true,
             messages: [
                     {
@@ -31,7 +32,7 @@ var app = new Vue({
             },
             {
             name: 'Fabio',
-            avatar: 'img/img_2.jpg',
+            avatar: '_2',
             visible: true,
             messages: [
                     {
@@ -53,7 +54,7 @@ var app = new Vue({
             },
             {
             name: 'Samuele',
-            avatar: 'img/img_3.jpg',
+            avatar: '_3',
             visible: true,
             messages: [
                     {
@@ -75,7 +76,7 @@ var app = new Vue({
             },
             {
             name: 'Luisa',
-            avatar: 'img/img_4.jpg',
+            avatar: '_4',
             visible: true,
             messages: [
                     {
@@ -111,12 +112,21 @@ var app = new Vue({
                 }),1000
             )
         },
-        /*  cerca: function(){
-            let nome1 = this.contacts[this.corrente].name;
-            let nome2 = this.nomi;
-            if(nome1.includes(nome2)){
-                console.log("Include")
-            }
-        } */
+        cerca: function(){
+            this.contacts.forEach(element => {          
+                if(element.name.toLowerCase().includes(this.nomi.toLowerCase())){
+                    element.visible = true;
+                }else{
+                    element.visible = false;
+                }
+                
+            });
+        },
+        mostraTendina: function(indice){
+            this.tendinaCorrente = indice
+        },
+        eliminaMessaggio: function(indice){
+            this.contacts[this.corrente].messages.splice(indice, 1)
+        }
     }
 })
